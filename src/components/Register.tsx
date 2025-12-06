@@ -306,9 +306,13 @@ const SchoolRegistrationForm: React.FC = () => {
                                     gutterBottom
                                     color="text.secondary"
                                 >
-                                    Americankindergarten
-                                    Xususiy bog'chasi
-
+                                    <span style={{ fontStyle: 'normal' }}>
+                                        Americankindergarten <strong>Xususiy bog'chasi</strong>
+                                    </span>
+                                    <br />
+                                    <span style={{ fontStyle: 'normal' }}>
+                                        American kindergarten <strong>Xususiy bog'chasi</strong>
+                                    </span>
                                 </Typography>
 
                                 <Typography variant="h6" color="text.secondary" gutterBottom>
