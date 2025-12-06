@@ -304,22 +304,26 @@ const SchoolRegistrationForm: React.FC = () => {
                                 <Typography
                                     variant="h4"
                                     gutterBottom
-                                    color="text.secondary"
+                                    sx={{
+                                        color: '#FFD700',
+                                        fontStyle: 'italic',
+                                        fontWeight: 700,
+                                        textAlign: 'center',
+                                        lineHeight: 1.1,
+                                    }}
                                 >
-                                    <span style={{ fontStyle: 'normal' }}>
-                                        Americankindergarten <strong>Xususiy bog'chasi</strong>
-                                    </span>
-                                    <br />
-                                    <span style={{ fontStyle: 'normal' }}>
-                                        American kindergarten <strong>Xususiy bog'chasi</strong>
-                                    </span>
+                                    American kindergarten <span style={{ fontStyle: 'italic' }}><strong>Xususiy bog'chasi</strong></span>
                                 </Typography>
 
-                                <Typography variant="h6" color="text.secondary" gutterBottom>
+                                <Typography
+                                    variant="h6"
+                                    gutterBottom
+                                    sx={{ color: '#FFD700', fontStyle: 'italic', textAlign: 'center' }}
+                                >
                                     Qabulga ro'yxatdan o'ting
                                 </Typography>
 
-                                <Typography variant="body2" color="text.secondary">
+                                <Typography variant="body2" sx={{ color: '#FFD700', fontStyle: 'italic', textAlign: 'center' }}>
                                     Ma'lumotlaringizni yozib qoldiring, siz bilan tezda bog'lanamiz,
                                     bog'chamiz haqida yana ham batafsil ma'lumot beramiz
                                 </Typography>
