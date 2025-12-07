@@ -28,7 +28,7 @@ import {
     CheckCircle
 } from '@mui/icons-material';
 
-import Logo from "../assets/kingLogo.jpg"
+import Logo from "../assets/popgarden.png"
 
 // Zamonaviy tema yaratish
 // Yangi zamonaviy tema (Dark Blue + Gold)
@@ -36,7 +36,7 @@ const theme = createTheme({
     palette: {
         mode: 'dark',
         primary: {
-            main: '#FFD700', // gold
+            main: '#d1b83cff', // gold
             light: '#FFECB3',
             dark: '#CCAC00',
         },
@@ -46,11 +46,11 @@ const theme = createTheme({
             dark: '#001F40',
         },
         background: {
-            default: '#474d64',
-            paper: 'rgba(71, 77, 100, 0.8)', // logo color with alpha
+            default: '#00b536ff',
+            paper: 'rgba(36, 238, 124, 0.8)', // logo color with alpha
         },
         text: {
-            primary: '#FFFFFF',
+            primary: '#FFD700',
             secondary: '#FFD700',
         },
     },
@@ -70,7 +70,7 @@ const theme = createTheme({
                 root: {
                     background: 'rgba(71, 77, 100, 0.8)',
                     backdropFilter: 'blur(20px)',
-                    border: '1px solid #FFD700',
+                    border: '1px solid #cab959ff',
                     borderRadius: '20px',
                 },
             },
@@ -82,7 +82,7 @@ const theme = createTheme({
                         borderRadius: '12px',
                         background: 'rgba(255, 255, 255, 0.05)',
                         '&:hover fieldset': {
-                            borderColor: '#FFD700',
+                            borderColor: '#cebe68ff',
                         },
                         '&.Mui-focused fieldset': {
                             borderColor: '#FFD700',
@@ -92,7 +92,7 @@ const theme = createTheme({
                         color: '#FFD700',
                     },
                     '& .MuiInputBase-input': {
-                        color: '#fff',
+                        color: '#FFD700',
                     },
                 },
             },
@@ -123,7 +123,6 @@ const theme = createTheme({
 interface FormData {
     name: string;
     district: string;
-    class: string;
     phoneNumber: string;
 }
 
@@ -131,7 +130,6 @@ const SchoolRegistrationForm: React.FC = () => {
     const [formData, setFormData] = useState<FormData>({
         name: '',
         district: '',
-        class: '',
         phoneNumber: '',
     });
 
@@ -141,10 +139,13 @@ const SchoolRegistrationForm: React.FC = () => {
     const [openSnackbar, setOpenSnackbar] = useState(false);
 
     const tumanlar = [
-        'Namangan shahri',
-        'Yangi Namangan tumani',
-        'Davlatobod tumani',
-        "Boshqa"
+        'Namangan',
+        'Andijon',
+        "Farg`ona",
+        'Toshkent',
+        'Chust tumani',
+        'Pop tumani',
+        'Boshqa'
     ];
 
     // const sinflar = [
@@ -161,11 +162,7 @@ const SchoolRegistrationForm: React.FC = () => {
     //     '11-sinf'
     // ];
 
-    const age = [
-        "4-yosh",
-        "5-yosh",
-        "6-yosh",
-    ]
+
 
     const handleInputChange = (field: keyof FormData) => (
         event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent
@@ -182,11 +179,7 @@ const SchoolRegistrationForm: React.FC = () => {
             return false;
         }
         if (!formData.district) {
-            setError('Tumanni tanlang');
-            return false;
-        }
-        if (!formData.class) {
-            setError('Sinfni tanlang');
+            setError('Yashash manzilingizni kiriting');
             return false;
         }
         if (!formData.phoneNumber.trim()) {
@@ -201,22 +194,21 @@ const SchoolRegistrationForm: React.FC = () => {
     };
 
     const sendToTelegram = async () => {
-        const message = `🎓 YANGI RO'YXATDAN O'TISH
+    const message = `🎓 YANGI RO'YXATDAN O'TISH
 
 👤 Ism: ${formData.name}
-🏘️ Tuman: ${formData.district}
-📚 Yoshi: ${formData.class}
+🏘️ Yashash manzili: ${formData.district}
 📞 Telefon: ${formData.phoneNumber}
 
 📅 Vaqt: ${new Date().toLocaleString('uz-UZ')}`;
 
-        const response = await fetch('https://api.telegram.org/bot8355977324:AAH3xs6LLm5VyA-hqEVsuQLCh0zv7WhTZS8/sendMessage', {
+        const response = await fetch('https://api.telegram.org/bot8257125308:AAFx4Yk9Gt-Sn4wCRok7rbJ2J0TnrAReC2M/sendMessage', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                chat_id: '-1003499978575', // Bu yerga o'z chat ID'ingizni qo'ying
+                chat_id: '-1003433265887', // Bu yerga o'z chat ID'ingizni qo'ying
                 text: message,
                 parse_mode: 'HTML'
             }),
@@ -244,7 +236,6 @@ const SchoolRegistrationForm: React.FC = () => {
             setFormData({
                 name: '',
                 district: '',
-                class: '',
                 phoneNumber: '',
             });
             setTimeout(() => setSuccess(false), 3000);
@@ -262,7 +253,7 @@ const SchoolRegistrationForm: React.FC = () => {
             <Box
                 sx={{
                     minHeight: '100vh',
-                    background: 'linear-gradient(135deg, #474d64 0%, #474d64 100%)',
+                    background: 'linear-gradient(135deg, #068b5aff 0%, #59c99eff 100%)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -312,7 +303,7 @@ const SchoolRegistrationForm: React.FC = () => {
                                         lineHeight: 1.1,
                                     }}
                                 >
-                                    American kindergarten <span style={{ fontStyle: 'italic' }}><strong>Xususiy bog'chasi</strong></span>
+                                    POP GARDEN <span style={{ fontStyle: 'italic' }}><strong>Yevropa standartidagi uylar</strong></span>
                                 </Typography>
 
                                 <Typography
@@ -320,12 +311,12 @@ const SchoolRegistrationForm: React.FC = () => {
                                     gutterBottom
                                     sx={{ color: '#FFD700', fontStyle: 'italic', textAlign: 'center' }}
                                 >
-                                    Qabulga ro'yxatdan o'ting
+                                     Ro'yxatdan o'ting
                                 </Typography>
 
                                 <Typography variant="body2" sx={{ color: '#FFD700', fontStyle: 'italic', textAlign: 'center' }}>
                                     Ma'lumotlaringizni yozib qoldiring, siz bilan tezda bog'lanamiz,
-                                    bog'chamiz haqida yana ham batafsil ma'lumot beramiz
+                                    POP GARDEN haqida yana ham batafsil ma'lumot beramiz
                                 </Typography>
                             </Box>
 
@@ -368,11 +359,11 @@ const SchoolRegistrationForm: React.FC = () => {
                                     />
 
                                     <FormControl fullWidth margin="normal" required sx={{ mb: 2 }}>
-                                        <InputLabel>Tumanni tanlang</InputLabel>
+                                        <InputLabel>Yashash manzilingizni kiriting</InputLabel>
                                         <Select
                                             value={formData.district}
-                                            onChange={handleInputChange('district')}
-                                            label="Tumanni tanlang"
+                                                onChange={handleInputChange('district')}
+                                                label="Yashash manzilingizni kiriting"
                                             sx={{
                                                 borderRadius: '12px',
                                                 background: 'rgba(255, 255, 255, 0.05)',
@@ -381,25 +372,6 @@ const SchoolRegistrationForm: React.FC = () => {
                                             {tumanlar.map((tuman) => (
                                                 <MenuItem key={tuman} value={tuman}>
                                                     {tuman}
-                                                </MenuItem>
-                                            ))}
-                                        </Select>
-                                    </FormControl>
-
-                                    <FormControl fullWidth margin="normal" required sx={{ mb: 2 }}>
-                                        <InputLabel>Yosh tanlang</InputLabel>
-                                        <Select
-                                            value={formData.class}
-                                            onChange={handleInputChange('class')}
-                                            label="Sinfni tanlang"
-                                            sx={{
-                                                borderRadius: '12px',
-                                                background: 'rgba(255, 255, 255, 0.05)',
-                                            }}
-                                        >
-                                            {age.map((item) => (
-                                                <MenuItem key={item} value={item}>
-                                                    {item}
                                                 </MenuItem>
                                             ))}
                                         </Select>
