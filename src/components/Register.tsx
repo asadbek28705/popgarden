@@ -297,13 +297,13 @@ const SchoolRegistrationForm: React.FC = () => {
                                     gutterBottom
                                     sx={{
                                         color: '#FFD700',
-                                        fontStyle: 'italic',
+                                        fontStyle: 'normal',
                                         fontWeight: 700,
                                         textAlign: 'center',
                                         lineHeight: 1.1,
                                     }}
                                 >
-                                        Pop garden <span style={{ fontStyle: 'italic' }}><strong>Xususiy bog'chasi</strong></span>
+                                    Pop garden <strong>Yevropa standartidagi uylar</strong>
                                 </Typography>
 
                                 <Typography
