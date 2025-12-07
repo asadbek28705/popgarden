@@ -303,7 +303,7 @@ const SchoolRegistrationForm: React.FC = () => {
                                         lineHeight: 1.1,
                                     }}
                                 >
-                                    POP GARDEN <span style={{ fontStyle: 'italic' }}><strong>Yevropa standartidagi uylar</strong></span>
+                                        Pop garden <span style={{ fontStyle: 'italic' }}><strong>Xususiy bog'chasi</strong></span>
                                 </Typography>
 
                                 <Typography
