@@ -46,8 +46,8 @@ const theme = createTheme({
             dark: '#001F40',
         },
         background: {
-            default: '#00b536ff',
-            paper: 'rgba(36, 238, 124, 0.8)', // logo color with alpha
+            default: '#0048b5ff',
+            paper: 'rgba(39, 67, 255, 0.8)', // logo color with alpha
         },
         text: {
             primary: '#FFD700',
@@ -253,7 +253,7 @@ const SchoolRegistrationForm: React.FC = () => {
             <Box
                 sx={{
                     minHeight: '100vh',
-                    background: 'linear-gradient(135deg, #068b5aff 0%, #59c99eff 100%)',
+                    background: 'linear-gradient(135deg, #002B5B 0%, #30588C 100%)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
