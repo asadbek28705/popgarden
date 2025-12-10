@@ -28,7 +28,7 @@ import {
     CheckCircle
 } from '@mui/icons-material';
 
-import Logo from "../assets/logo.png"
+import Logo from "../assets/popgarden.png"
 
 // Zamonaviy tema yaratish
 // Yangi zamonaviy tema (Dark Blue + Gold)
@@ -42,12 +42,12 @@ const theme = createTheme({
         },
         secondary: {
             main: '#002B5B', // dark blue
-            light: '#113666ff',
+            light: '#30588C',
             dark: '#001F40',
         },
         background: {
-            default: '#0048b5ff',
-            paper: 'rgba(39, 67, 255, 0.8)', // logo color with alpha
+            default: '#00b536ff',
+            paper: 'rgba(36, 238, 124, 0.8)', // logo color with alpha
         },
         text: {
             primary: '#FFD700',
@@ -68,7 +68,7 @@ const theme = createTheme({
         MuiPaper: {
             styleOverrides: {
                 root: {
-                    background: 'rgba(37, 55, 126, 0.8)',
+                    background: 'rgba(71, 77, 100, 0.8)',
                     backdropFilter: 'blur(20px)',
                     border: '1px solid #cab959ff',
                     borderRadius: '20px',
@@ -123,7 +123,6 @@ const theme = createTheme({
 interface FormData {
     name: string;
     district: string;
-    class: string;
     phoneNumber: string;
 }
 
@@ -131,7 +130,6 @@ const SchoolRegistrationForm: React.FC = () => {
     const [formData, setFormData] = useState<FormData>({
         name: '',
         district: '',
-        class: '',
         phoneNumber: '',
     });
 
@@ -141,21 +139,28 @@ const SchoolRegistrationForm: React.FC = () => {
     const [openSnackbar, setOpenSnackbar] = useState(false);
 
     const tumanlar = [
+        'Namangan',
+        'Andijon',
+        "Farg`ona",
+        'Toshkent',
+        'Chust tumani',
         'Pop tumani',
         'Boshqa'
     ];
 
-    const sinflar = [
-        'Tayyorlov guruhi',
-        '1-sinf',
-        '2-sinf',
-        '3-sinf',
-        '4-sinf',
-        '5-sinf',
-        '6-sinf',
-        '7-sinf',
-        '8-sinf',
-    ];
+    // const sinflar = [
+    //     '1-sinf',
+    //     '2-sinf',
+    //     '3-sinf',
+    //     '4-sinf',
+    //     '5-sinf',
+    //     '6-sinf',
+    //     '7-sinf',
+    //     '8-sinf',
+    //     '9-sinf',
+    //     '10-sinf',
+    //     '11-sinf'
+    // ];
 
 
 
@@ -174,11 +179,7 @@ const SchoolRegistrationForm: React.FC = () => {
             return false;
         }
         if (!formData.district) {
-            setError("Yashash manzilingizni kiriting");
-            return false;
-        }
-        if (!formData.class) {
-            setError('Sinfni tanlang');
+            setError('Yashash manzilingizni kiriting');
             return false;
         }
         if (!formData.phoneNumber.trim()) {
@@ -197,7 +198,6 @@ const SchoolRegistrationForm: React.FC = () => {
 
 👤 Ism: ${formData.name}
 🏘️ Yashash manzili: ${formData.district}
-📚 Sinf: ${formData.class}
 📞 Telefon: ${formData.phoneNumber}
 
 📅 Vaqt: ${new Date().toLocaleString('uz-UZ')}`;
@@ -230,13 +230,12 @@ const SchoolRegistrationForm: React.FC = () => {
         setLoading(true);
         setError('');
 
-            try {
+        try {
             await sendToTelegram();
             setSuccess(true);
             setFormData({
                 name: '',
                 district: '',
-                class: '',
                 phoneNumber: '',
             });
             setTimeout(() => setSuccess(false), 3000);
@@ -254,41 +253,13 @@ const SchoolRegistrationForm: React.FC = () => {
             <Box
                 sx={{
                     minHeight: '100vh',
-                    background: 'linear-gradient(135deg, #002B5B 0%, #30588C 100%)',
+                    background: 'linear-gradient(135deg, #068b5aff 0%, #59c99eff 100%)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     padding: 2,
-                    position: 'relative',
                 }}
             >
-                {/* Snow animation overlay */}
-                <div
-                    aria-hidden
-                    style={{ position: 'absolute', inset: 0, zIndex: 1300, pointerEvents: 'none' }}
-                    className="snow"
-                >
-                    {[...Array(40)].map((_, i) => (
-                        <span
-                            key={i}
-                            className="flake"
-                            style={{
-                                left: `${Math.random() * 100}%`,
-                                animationDuration: `${6 + Math.random() * 8}s`,
-                                opacity: 0.6 + Math.random() * 0.4,
-                                fontSize: `${8 + Math.random() * 18}px`,
-                            }}
-                        >
-                            ❄
-                        </span>
-                    ))}
-                </div>
-                <style>{`
-                    .snow .flake{ position:absolute; top:-10vh; color: rgba(255,255,255,0.95); text-shadow:0 0 8px rgba(255,255,255,0.6); transform: translate3d(0,0,0); }
-                    @keyframes fall{ 0%{ transform: translateY(-10vh) translateX(0);} 100%{ transform: translateY(110vh) translateX(20px);} }
-                    @keyframes sway{ 0%{ transform: translateX(0);} 50%{ transform: translateX(30px);} 100%{ transform: translateX(0);} }
-                    .snow .flake{ animation-name: fall, sway; animation-timing-function: linear, ease-in-out; animation-iteration-count: infinite, infinite; }
-                `}</style>
                 <Container maxWidth="sm">
                     <Slide direction="up" in={true} mountOnEnter unmountOnExit>
                         <Paper
@@ -332,20 +303,20 @@ const SchoolRegistrationForm: React.FC = () => {
                                         lineHeight: 1.1,
                                     }}
                                 >
-                                     <strong> POP XALQARO MAKTABI </strong>
+                                    Pop garden <strong>Yevropa standartidagi uylar</strong>
                                 </Typography>
 
                                 <Typography
                                     variant="h6"
                                     gutterBottom
-                                    sx={{ color: '#FFD700', fontStyle: 'bold', textAlign: 'center' }}
+                                    sx={{ color: '#FFD700', fontStyle: 'italic', textAlign: 'center' }}
                                 >
-                                     Qabulga ro'yxatdan o'ting
+                                     Ro'yxatdan o'ting
                                 </Typography>
 
                                 <Typography variant="body2" sx={{ color: '#FFD700', fontStyle: 'italic', textAlign: 'center' }}>
                                     Ma'lumotlaringizni yozib qoldiring, siz bilan tezda bog'lanamiz,
-                                     maktabimiz haqida yana ham batafsil ma'lumot beramiz
+                                    POP GARDEN haqida yana ham batafsil ma'lumot beramiz
                                 </Typography>
                             </Box>
 
@@ -365,7 +336,7 @@ const SchoolRegistrationForm: React.FC = () => {
                                 <Box component="form" onSubmit={handleSubmit}>
                                     <TextField
                                         fullWidth
-                                        label="Ism va familiyangizni kiriting"
+                                        label="Ismingiz"
                                         value={formData.name}
                                         onChange={handleInputChange('name')}
                                         margin="normal"
@@ -402,23 +373,6 @@ const SchoolRegistrationForm: React.FC = () => {
                                                 <MenuItem key={tuman} value={tuman}>
                                                     {tuman}
                                                 </MenuItem>
-                                            ))}
-                                        </Select>
-                                    </FormControl>
-
-                                    <FormControl fullWidth margin="normal" required sx={{ mb: 2 }}>
-                                        <InputLabel>Sinfingizni tanlang</InputLabel>
-                                        <Select
-                                            value={formData.class}
-                                            onChange={handleInputChange('class')}
-                                            label="Sinfingizni tanlang"
-                                            sx={{
-                                                borderRadius: '12px',
-                                                background: 'rgba(255, 255, 255, 0.05)',
-                                            }}
-                                        >
-                                            {sinflar.map((s) => (
-                                                <MenuItem key={s} value={s}>{s}</MenuItem>
                                             ))}
                                         </Select>
                                     </FormControl>
