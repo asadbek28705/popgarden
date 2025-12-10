@@ -28,7 +28,7 @@ import {
     CheckCircle
 } from '@mui/icons-material';
 
-import Logo from "../assets/popgarden.png"
+import Logo from "../assets/logo.png"
 
 // Zamonaviy tema yaratish
 // Yangi zamonaviy tema (Dark Blue + Gold)
@@ -42,7 +42,7 @@ const theme = createTheme({
         },
         secondary: {
             main: '#002B5B', // dark blue
-            light: '#30588C',
+            light: '#113666ff',
             dark: '#001F40',
         },
         background: {
@@ -68,7 +68,7 @@ const theme = createTheme({
         MuiPaper: {
             styleOverrides: {
                 root: {
-                    background: 'rgba(71, 77, 100, 0.8)',
+                    background: 'rgba(37, 55, 126, 0.8)',
                     backdropFilter: 'blur(20px)',
                     border: '1px solid #cab959ff',
                     borderRadius: '20px',
@@ -123,6 +123,7 @@ const theme = createTheme({
 interface FormData {
     name: string;
     district: string;
+    class: string;
     phoneNumber: string;
 }
 
@@ -130,6 +131,7 @@ const SchoolRegistrationForm: React.FC = () => {
     const [formData, setFormData] = useState<FormData>({
         name: '',
         district: '',
+        class: '',
         phoneNumber: '',
     });
 
@@ -139,28 +141,21 @@ const SchoolRegistrationForm: React.FC = () => {
     const [openSnackbar, setOpenSnackbar] = useState(false);
 
     const tumanlar = [
-        'Namangan',
-        'Andijon',
-        "Farg`ona",
-        'Toshkent',
-        'Chust tumani',
         'Pop tumani',
         'Boshqa'
     ];
 
-    // const sinflar = [
-    //     '1-sinf',
-    //     '2-sinf',
-    //     '3-sinf',
-    //     '4-sinf',
-    //     '5-sinf',
-    //     '6-sinf',
-    //     '7-sinf',
-    //     '8-sinf',
-    //     '9-sinf',
-    //     '10-sinf',
-    //     '11-sinf'
-    // ];
+    const sinflar = [
+        'Tayyorlov guruhi',
+        '1-sinf',
+        '2-sinf',
+        '3-sinf',
+        '4-sinf',
+        '5-sinf',
+        '6-sinf',
+        '7-sinf',
+        '8-sinf',
+    ];
 
 
 
@@ -179,7 +174,11 @@ const SchoolRegistrationForm: React.FC = () => {
             return false;
         }
         if (!formData.district) {
-            setError('Yashash manzilingizni kiriting');
+            setError("Yashash manzilingizni kiriting");
+            return false;
+        }
+        if (!formData.class) {
+            setError('Sinfni tanlang');
             return false;
         }
         if (!formData.phoneNumber.trim()) {
@@ -198,6 +197,7 @@ const SchoolRegistrationForm: React.FC = () => {
 
 👤 Ism: ${formData.name}
 🏘️ Yashash manzili: ${formData.district}
+📚 Sinf: ${formData.class}
 📞 Telefon: ${formData.phoneNumber}
 
 📅 Vaqt: ${new Date().toLocaleString('uz-UZ')}`;
@@ -230,12 +230,13 @@ const SchoolRegistrationForm: React.FC = () => {
         setLoading(true);
         setError('');
 
-        try {
+            try {
             await sendToTelegram();
             setSuccess(true);
             setFormData({
                 name: '',
                 district: '',
+                class: '',
                 phoneNumber: '',
             });
             setTimeout(() => setSuccess(false), 3000);
@@ -336,7 +337,7 @@ const SchoolRegistrationForm: React.FC = () => {
                                 <Box component="form" onSubmit={handleSubmit}>
                                     <TextField
                                         fullWidth
-                                        label="Ismingiz"
+                                        label="Ism va familiyangizni kiriting"
                                         value={formData.name}
                                         onChange={handleInputChange('name')}
                                         margin="normal"
@@ -373,6 +374,23 @@ const SchoolRegistrationForm: React.FC = () => {
                                                 <MenuItem key={tuman} value={tuman}>
                                                     {tuman}
                                                 </MenuItem>
+                                            ))}
+                                        </Select>
+                                    </FormControl>
+
+                                    <FormControl fullWidth margin="normal" required sx={{ mb: 2 }}>
+                                        <InputLabel>Sinfingizni tanlang</InputLabel>
+                                        <Select
+                                            value={formData.class}
+                                            onChange={handleInputChange('class')}
+                                            label="Sinfingizni tanlang"
+                                            sx={{
+                                                borderRadius: '12px',
+                                                background: 'rgba(255, 255, 255, 0.05)',
+                                            }}
+                                        >
+                                            {sinflar.map((s) => (
+                                                <MenuItem key={s} value={s}>{s}</MenuItem>
                                             ))}
                                         </Select>
                                     </FormControl>
