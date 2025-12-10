@@ -259,8 +259,36 @@ const SchoolRegistrationForm: React.FC = () => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     padding: 2,
+                    position: 'relative',
                 }}
             >
+                {/* Snow animation overlay */}
+                <div
+                    aria-hidden
+                    style={{ position: 'absolute', inset: 0, zIndex: 1300, pointerEvents: 'none' }}
+                    className="snow"
+                >
+                    {[...Array(40)].map((_, i) => (
+                        <span
+                            key={i}
+                            className="flake"
+                            style={{
+                                left: `${Math.random() * 100}%`,
+                                animationDuration: `${6 + Math.random() * 8}s`,
+                                opacity: 0.6 + Math.random() * 0.4,
+                                fontSize: `${8 + Math.random() * 18}px`,
+                            }}
+                        >
+                            ❄
+                        </span>
+                    ))}
+                </div>
+                <style>{`
+                    .snow .flake{ position:absolute; top:-10vh; color: rgba(255,255,255,0.95); text-shadow:0 0 8px rgba(255,255,255,0.6); transform: translate3d(0,0,0); }
+                    @keyframes fall{ 0%{ transform: translateY(-10vh) translateX(0);} 100%{ transform: translateY(110vh) translateX(20px);} }
+                    @keyframes sway{ 0%{ transform: translateX(0);} 50%{ transform: translateX(30px);} 100%{ transform: translateX(0);} }
+                    .snow .flake{ animation-name: fall, sway; animation-timing-function: linear, ease-in-out; animation-iteration-count: infinite, infinite; }
+                `}</style>
                 <Container maxWidth="sm">
                     <Slide direction="up" in={true} mountOnEnter unmountOnExit>
                         <Paper
@@ -304,20 +332,20 @@ const SchoolRegistrationForm: React.FC = () => {
                                         lineHeight: 1.1,
                                     }}
                                 >
-                                    Pop garden <strong>Yevropa standartidagi uylar</strong>
+                                     <strong> POP XALQARO MAKTABI </strong>
                                 </Typography>
 
                                 <Typography
                                     variant="h6"
                                     gutterBottom
-                                    sx={{ color: '#FFD700', fontStyle: 'italic', textAlign: 'center' }}
+                                    sx={{ color: '#FFD700', fontStyle: 'bold', textAlign: 'center' }}
                                 >
-                                     Ro'yxatdan o'ting
+                                     Qabulga ro'yxatdan o'ting
                                 </Typography>
 
                                 <Typography variant="body2" sx={{ color: '#FFD700', fontStyle: 'italic', textAlign: 'center' }}>
                                     Ma'lumotlaringizni yozib qoldiring, siz bilan tezda bog'lanamiz,
-                                    POP GARDEN haqida yana ham batafsil ma'lumot beramiz
+                                     maktabimiz haqida yana ham batafsil ma'lumot beramiz
                                 </Typography>
                             </Box>
 
